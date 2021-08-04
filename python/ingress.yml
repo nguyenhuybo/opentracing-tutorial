@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jaeger-agent
+  namespace: opentracing
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: jaeger.linecorp-dev.com
+    http:
+      paths:
+      - backend:
+          serviceName: jaeger-query
+          servicePort: query
+        path: "/"
